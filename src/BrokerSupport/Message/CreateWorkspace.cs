@@ -1,5 +1,4 @@
 ﻿using BrokerSupport.Message.Interfaces;
-using LT.DigitalOffice.Kernel.Broker;
 using LT.DigitalOffice.Kernel.Extensions;
 using LT.DigitalOffice.Models.Broker.Requests.Message;
 using MassTransit;
@@ -11,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace BrokerSupport.Message
 {
-  public class CreateWorkspace<T> : ICreateWorkspace<T> where T : class
+  public class CreateWorkspace : ICreateWorkspace
   {
-    private readonly ILogger<CreateWorkspace<T>> _logger;
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ILogger<CreateWorkspace> _logger;
+    private readonly HttpContext _httpContext;
     private readonly IRequestClient<ICreateWorkspaceRequest> _requestClient;
 
     public CreateWorkspace(
-      ILogger<CreateWorkspace<T>> logger,
+      ILogger<CreateWorkspace> logger,
       IHttpContextAccessor httpContextAccessor,
       IRequestClient<ICreateWorkspaceRequest> requestClient)
     {
       _logger = logger;
-      _httpContextAccessor = httpContextAccessor;
+      _httpContext = httpContextAccessor?.HttpContext;
       _requestClient = requestClient;
     }
 
@@ -32,31 +31,13 @@ namespace BrokerSupport.Message
       string name,
       List<Guid> usersIds)
     {
-      try
-      {
-        var response = await _requestClient.GetResponse<IOperationResult<bool>>(
-          ICreateWorkspaceRequest.CreateObj(
-            name,
-            _httpContextAccessor.HttpContext.GetUserId(),
-            usersIds));
-
-        if (response.Message.IsSuccess && response.Message.Body)
-        {
-          return true;
-        }
-
-        _logger.LogWarning(
-          "Errors while creating workspace.\n Reason: {Errors}",
-          string.Join('\n', response.Message.Errors));
-      }
-      catch (Exception exc)
-      {
-        _logger.LogError(exc, "Сan't create workspace.");
-      }
-
-      errors.Add("Сan't create workspace. Please try again later.");
-
-      return false;
+      return await _requestClient.ProcessRequest<ICreateWorkspaceRequest, bool>(
+        ICreateWorkspaceRequest.CreateObj(
+          name,
+          _httpContext?.GetUserId() ?? Guid.Empty,
+          usersIds),
+        errors,
+        _logger);
     }
   }
 }

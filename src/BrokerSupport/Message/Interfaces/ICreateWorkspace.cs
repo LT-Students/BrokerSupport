@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BrokerSupport.Message.Interfaces
 {
-  public interface ICreateWorkspace<T> where T : class
+  public interface ICreateWorkspace
   {
     Task<bool> ExecuteAsync(
       List<string> errors,

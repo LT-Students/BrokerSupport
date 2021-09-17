@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BrokerSupport.Message.Interfaces
 {
-  public interface ISendEmail<T> where T : class
+  public interface IEmailSender
   {
     Task<bool> ExecuteAsync(
       List<string> errors,
