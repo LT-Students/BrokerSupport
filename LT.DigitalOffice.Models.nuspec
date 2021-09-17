@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LT.DigitalOffice.BrokerSupport</id>
+    <version>1.0.0</version>
+    <title>LT.DigitalOffice.BrokerSupport</title>
+    <authors>LT Digital Office</authors>
+    <owners>LT Digital Office</owners>
+    <projectUrl>https://github.com/LT-Students/DigitalOffice-BrokerSupport</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library used in the Digital Office project.</description>
+    <releaseNotes>
+      1.0.0 - Initial version.
+
+      Previous versions:
+
+    </releaseNotes>
+    <copyright>Copyright © LT Digital Office</copyright>
+    <tags>DigitalOffice</tags>
+	  <dependencies>
+		  <group targetFramework="net5.0">
+			  <dependency id="MassTransit" version="7.1.7"/>
+			  <dependency id="MassTransit.AspNetCore" version="7.1.7"/>
+			  <dependency id="MassTransit.Extensions.DependencyInjection" version="7.1.7"/>
+			  <dependency id="MassTransit.RabbitMQ" version="7.1.7"/>
+		  </group>
+	  </dependencies>
+  </metadata>
+  <files>
+    <file src="artifacts\LT.DigitalOffice.BrokerSupport.dll" target="lib\net5.0" />
+    <file src="artifacts\LT.DigitalOffice.BrokerSupport.pdb" target="lib\net5.0" />
+  </files>
+</package>
