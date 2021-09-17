@@ -1,4 +1,5 @@
 ﻿using LT.DigitalOffice.Models.Broker.Enums;
+using LT.DigitalOffice.Models.Broker.Responses.Image;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ namespace BrokerSupport.Message.Interfaces
 {
   public interface IEmailSender
   {
-    Task<bool> ExecuteAsync(
+    Task<ICreateImagesResponse> ExecuteAsync(
       List<string> errors,
       string email,
       Dictionary<string, string> templateValues,
