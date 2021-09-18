@@ -8,7 +8,7 @@ namespace BrokerSupport.Message.Interfaces
 {
   public interface IEmailSender
   {
-    Task<ICreateImagesResponse> ExecuteAsync(
+    Task<bool> ExecuteAsync(
       List<string> errors,
       string email,
       Dictionary<string, string> templateValues,

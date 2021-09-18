@@ -1,5 +1,5 @@
 ﻿using LT.DigitalOffice.Models.Broker.Enums;
-using LT.DigitalOffice.Models.Broker.Responses.File;
+using LT.DigitalOffice.Models.Broker.Responses.Image;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

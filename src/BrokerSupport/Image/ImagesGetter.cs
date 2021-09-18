@@ -30,9 +30,9 @@ namespace BrokerSupport.Image
       List<Guid> imagesIds,
       ImageSource imageSource)
     {
-      if (imagesIds == null || !imagesIds.Any() || imagesIds.Contains(Guid.Empty))
+      if (imagesIds == null || !imagesIds.Any())
       {
-        return null;
+        return default;
       }
 
       return await _requestClient.ProcessRequest<IGetImagesRequest, IGetImagesResponse>(
