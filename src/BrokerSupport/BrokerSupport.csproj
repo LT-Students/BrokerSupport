@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LT.DigitalOffice.Models" Version="1.0.39" />
+	<PackageReference Include="LT.DigitalOffice.Kernel" Version="1.1.33" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="File\Interface\" />
+  </ItemGroup>
+
+</Project>
